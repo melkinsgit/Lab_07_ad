@@ -1,5 +1,6 @@
 package com.margaret;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Ticket {
@@ -30,12 +31,25 @@ public class Ticket {
     }
 
     // constructor
-    public Ticket(String desc, int p, String rep, Date date) {
+    public Ticket(String desc, int p, String rep, Date dateRep) {
         this.description = desc;
         this.priority = p;
         this.reporter = rep;
-        this.dateReported = date;
+        this.dateReported = dateRep;
         this.status = "open";
+        this.ticketID = staticTicketIDCounter;
+        staticTicketIDCounter++;
+    }
+
+    public Ticket(String[] params) {
+        this.description = params[0];
+        this.priority = Integer.parseInt(params[1]);
+        this.reporter = params[2];
+        this.dateReported = params[3];
+        this.status = params[4];
+        this.resolution = params[6];
+        this.dateResolved = params[7];
+        staticTicketIDCounter =
         this.ticketID = staticTicketIDCounter;
         staticTicketIDCounter++;
     }

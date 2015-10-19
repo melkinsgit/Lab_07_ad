@@ -3,6 +3,7 @@ package com.margaret;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -15,19 +16,20 @@ public class TicketManager {
     public static void main(String[] args) {
         // empty LinkedList to store tickets
 
-//        try {
-//            FileReader fRead = new FileReader("OpenTkts.txt");
-//            BufferedReader bRead = new BufferedReader(fRead);
-//            String ticketLine = bRead.readLine();
-//            System.out.println(ticketLine);
-//            while (!ticketLine.equals("hello")){  // TODO what's the value for eof
-//                System.out.println(ticketLine);
-//                ticketLine = bRead.readLine();
-//            }
-//        }
-//        catch (IOException io){
-//            System.out.println("Problem with input file.");
-//        }
+        try {
+            FileReader fRead = new FileReader("OpenTkts.txt");
+            BufferedReader bRead = new BufferedReader(fRead);
+            String ticketLine = bRead.readLine();
+            while (ticketLine != (null)){
+                System.out.println(ticketLine);
+                String [] params = ticketLine.split("\t");
+                ticketQueue.add(Ticket(params));
+                ticketLine = bRead.readLine();
+            }
+        }
+        catch (IOException io){
+            System.out.println("Problem with input file.");
+        }
 
         Scanner scan = new Scanner(System.in);
 
@@ -66,7 +68,16 @@ public class TicketManager {
         outputToFile("Open");
     }
 
-//METHOD OUTPUT TO FILE_________________________________________________________________
+    private static String splitStr(String ticketLine) {
+
+        String param;
+        String leftOver;
+        param = ticketLine.split("\t");
+
+        return null;
+    }
+
+    //METHOD OUTPUT TO FILE_________________________________________________________________
     private static void outputToFile(String fName) {
         try{
             Date now = new Date();
