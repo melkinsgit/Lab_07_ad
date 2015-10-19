@@ -1,2 +1,0 @@
- ------- Resolved tickets as of 10_18_2015 ----------
-ID: 2 Issued: that Priority: 3 Reported by: me Reported on: Sun Oct 18 21:09:50 CDT 2015 Status: closed Date Resolved: Sun Oct 18 21:11:01 CDT 2015 Resolution: it's fixed

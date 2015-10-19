@@ -15,15 +15,40 @@ public class TicketManager {
 
     public static void main(String[] args) {
         // empty LinkedList to store tickets
-
+        int lastCounter;
         try {
             FileReader fRead = new FileReader("OpenTkts.txt");
             BufferedReader bRead = new BufferedReader(fRead);
             String ticketLine = bRead.readLine();
+            System.out.println(ticketLine);
+            lastCounter = Integer.parseInt(ticketLine.substring(1,1));
+            System.out.println(lastCounter);
+            Ticket.staticTicketIDCounter = lastCounter;
+            ticketLine = bRead.readLine();
+            int ticketID;
+            String description;
+            int priority;
+            String reporter;
+            Date dateReported;
+            String status;
+            Date dateResolved;
+            String resolution;
             while (ticketLine != (null)){
                 System.out.println(ticketLine);
                 String [] params = ticketLine.split("\t");
-                ticketQueue.add(Ticket(params));
+                ticketID = Integer.parseInt(params[0]);
+                if (ticketID > Ticket.staticTicketIDCounter){
+                    Ticket.staticTicketIDCounter = ticketID;
+                }
+                description = params[1];
+                priority = Integer.parseInt(params[2]);
+                reporter = params[3];
+                dateReported = new Date();  // params[4];
+                status = params[5];
+                dateResolved = new Date();  // params[6];
+                resolution = params[7];
+                Ticket t = new Ticket(ticketID, description, priority, reporter, status, resolution);
+                addTicketInPriorityOrder(ticketQueue, t);
                 ticketLine = bRead.readLine();
             }
         }
@@ -68,16 +93,7 @@ public class TicketManager {
         outputToFile("Open");
     }
 
-    private static String splitStr(String ticketLine) {
-
-        String param;
-        String leftOver;
-        param = ticketLine.split("\t");
-
-        return null;
-    }
-
-    //METHOD OUTPUT TO FILE_________________________________________________________________
+//METHOD OUTPUT TO FILE_________________________________________________________________
     private static void outputToFile(String fName) {
         try{
             Date now = new Date();
@@ -95,8 +111,10 @@ public class TicketManager {
             }
             FileWriter w = new FileWriter(fTitle);
             BufferedWriter bw = new BufferedWriter(w);
-            bw.write(" ------- " + fName + " tickets as of " + nowStr + " ----------");
-            String writeStr = "";  // TODO send simpler strings to output files - no one is reading them; make them easy to take in as objects
+            if (fName.equals("Open")){
+                bw.write(Ticket.staticTicketIDCounter + " ");
+            }
+            String writeStr = "";
             for (Ticket t : listToUse) {
                     writeStr = ("\n" + t.getTicketID() + "\t" + t.getDescription() + "\t" + t.getPriority() + "\t" + t.getReporter() + "\t" + t.getDateReported()) + "\t" + t.getStatus() + "\t" + t.getDateResolved() + "\t" + t.getResolution();
                     bw.write(writeStr);

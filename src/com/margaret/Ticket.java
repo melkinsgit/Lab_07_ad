@@ -14,7 +14,7 @@ public class Ticket {
     //STATIC Counter - accessible to all Ticket objects.
 //If any Ticket object modifies this counter, all Ticket objects will have the modified value
 //Make it private - only Ticket objects should have access
-    private static int staticTicketIDCounter = 1;
+    protected static int staticTicketIDCounter = 1;
     //The ID for each ticket - instance variable. Each Ticket will have it's own ticketID variable
     protected int ticketID;
 
@@ -30,6 +30,10 @@ public class Ticket {
         this.resolution = resolution;
     }
 
+    public void setStaticCounter (int num){
+        this.staticTicketIDCounter = num;
+    }
+
     // constructor
     public Ticket(String desc, int p, String rep, Date dateRep) {
         this.description = desc;
@@ -41,17 +45,15 @@ public class Ticket {
         staticTicketIDCounter++;
     }
 
-    public Ticket(String[] params) {
-        this.description = params[0];
-        this.priority = Integer.parseInt(params[1]);
-        this.reporter = params[2];
-        this.dateReported = params[3];
-        this.status = params[4];
-        this.resolution = params[6];
-        this.dateResolved = params[7];
-        staticTicketIDCounter =
-        this.ticketID = staticTicketIDCounter;
-        staticTicketIDCounter++;
+    public Ticket(int ID, String descr, int prior, String report, String stat, String reso) {
+        this.ticketID = ID;
+        this.description = descr;
+        this.priority = prior;
+        this.reporter = report;
+        this.dateReported = new Date();  // params[4];
+        this.status = stat;
+        this.dateResolved = new Date();  // params[6];
+        this.resolution = reso;
     }
 
     public Date getDateReported() { return dateReported; }
