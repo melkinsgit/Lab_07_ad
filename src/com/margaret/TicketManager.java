@@ -16,12 +16,12 @@ public class TicketManager {
     public static void main(String[] args) {
         // empty LinkedList to store tickets
         int lastCounter;
-        try {
+        try {   // TODO manage situation where OpenTkts.txt does not yet exist
             FileReader fRead = new FileReader("OpenTkts.txt");
             BufferedReader bRead = new BufferedReader(fRead);
             String ticketLine = bRead.readLine();
             System.out.println(ticketLine);
-            lastCounter = Integer.parseInt(ticketLine.substring(1,1));
+            lastCounter = Integer.parseInt(ticketLine);
             System.out.println(lastCounter);
             Ticket.staticTicketIDCounter = lastCounter;
             ticketLine = bRead.readLine();
@@ -29,9 +29,9 @@ public class TicketManager {
             String description;
             int priority;
             String reporter;
-            Date dateReported;
+            Date dateReported;  // TODO make date import from OpenTkts file work
             String status;
-            Date dateResolved;
+            Date dateResolved;  // TODO make date import from OpenTkts file work
             String resolution;
             while (ticketLine != (null)){
                 System.out.println(ticketLine);
@@ -43,9 +43,9 @@ public class TicketManager {
                 description = params[1];
                 priority = Integer.parseInt(params[2]);
                 reporter = params[3];
-                dateReported = new Date();  // params[4];
+                dateReported = new Date();  // TODO make date import from OpenTkts file work
                 status = params[5];
-                dateResolved = new Date();  // params[6];
+                dateResolved = new Date();  // TODO make date import from OpenTkts file work
                 resolution = params[7];
                 Ticket t = new Ticket(ticketID, description, priority, reporter, status, resolution);
                 addTicketInPriorityOrder(ticketQueue, t);
@@ -112,7 +112,7 @@ public class TicketManager {
             FileWriter w = new FileWriter(fTitle);
             BufferedWriter bw = new BufferedWriter(w);
             if (fName.equals("Open")){
-                bw.write(Ticket.staticTicketIDCounter + " ");
+                bw.write(Ticket.staticTicketIDCounter + "");
             }
             String writeStr = "";
             for (Ticket t : listToUse) {

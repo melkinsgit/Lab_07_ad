@@ -50,9 +50,9 @@ public class Ticket {
         this.description = descr;
         this.priority = prior;
         this.reporter = report;
-        this.dateReported = new Date();  // params[4];
+        this.dateReported = new Date();  // TODO make date import from OpenTkts file work
         this.status = stat;
-        this.dateResolved = new Date();  // params[6];
+        this.dateResolved = new Date();  // TODO make date import from OpenTkts file work
         this.resolution = reso;
     }
 
