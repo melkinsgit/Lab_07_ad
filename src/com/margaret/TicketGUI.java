@@ -44,7 +44,8 @@ public class TicketGUI extends JFrame {
                      AddTicket addTicket = new AddTicket(ticketMethods);
                 }
                 if (menuOptions.getSelectedItem().equals(deleteByID)) {
-                    ticketMethods.deleteByID(ticketMethods.ticketQueue);
+                    DeleteByID deleteByID = new DeleteByID(ticketMethods);
+//                    ticketMethods.deleteByID(ticketMethods.ticketQueue);
                 }
                 if (menuOptions.getSelectedItem().equals(deleteByIss)) {
                     ticketMethods.deleteByIssue();                    ;

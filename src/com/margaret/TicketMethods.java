@@ -17,6 +17,7 @@ public class TicketMethods {
     protected int inputPriority;
     protected String inputDescr;
     protected String inputReporter;
+    protected int deleteID;
 
     public TicketMethods() {
         TicketGUI ticketGUI = new TicketGUI(this);
@@ -101,7 +102,7 @@ public class TicketMethods {
     }
 
     // METHOD GET NUM CHOICE______________________________________________________________________
-    private int getNumChoice(Scanner scan, String menu, int i) {
+    protected int getNumChoice(Scanner scan, String menu, int i) {
         int choice = 0;
         boolean valid = false;
         String s = scan.nextLine();
@@ -206,7 +207,7 @@ public class TicketMethods {
     } // end deleteTicket fn
 
     // METHOD GET Y OR N______________________________________________________________________
-    private String getYorN(String s) {
+    protected String getYorN(String s) {
         Scanner scan = new Scanner(System.in);
         String choice = "";
         boolean valid = false;
@@ -224,7 +225,7 @@ public class TicketMethods {
     }
 
     // METHOD GET TKT NUM______________________________________________________________________
-    private int getTktNum(Scanner numScan, String s) {
+    protected int getTktNum(Scanner numScan, String s) {
         boolean valid = false;
         int sNum = 0;
         while (!valid) {
@@ -244,16 +245,16 @@ public class TicketMethods {
     }
 
     // METHOD RESOLVE TICKET_______________________________________________________________________
-    private void resolveTicket(Ticket ticket) {
+    protected void resolveTicket(Ticket ticket) {
 
         ticket.setDateResolved(new Date());
-        Scanner s = new Scanner(System.in);
-        System.out.println("Enter description of resolution.");
-        String resString = s.nextLine();
-        ticket.setResolution(resString);
+//        Scanner s = new Scanner(System.in);
+//        System.out.println("Enter description of resolution.");
+//        String resString = s.nextLine();
+//        ticket.setResolution(resString);
         ticket.setStatus("closed");
         resolvedTickets.add(ticket);
-        printAllTickets(resolvedTickets, true);
+//        printAllTickets(resolvedTickets, true);
 //        s.close();
     } // end resolveTicket fn
 
@@ -287,7 +288,7 @@ public class TicketMethods {
     } // end deleteTicket fn
 
     // METHOD LIST OF MATCHES_________________________________________________________________
-    private static LinkedList<Ticket> listOfMatches(LinkedList<Ticket> ticketQueue, String deleteIssue) {
+    protected LinkedList<Ticket> listOfMatches(LinkedList<Ticket> ticketQueue, String deleteIssue) {
 
         LinkedList<Ticket> result = new LinkedList<>();
 
@@ -302,33 +303,11 @@ public class TicketMethods {
     // METHOD ADD TICKETS_________________________________________________________________
     //Move the adding ticket code to a method
     protected void addTickets() {
-//        Scanner sc = new Scanner(System.in);
-//        boolean moreProblems = true;
-//        String description;
-//        String reporter;
-//let's assume all tickets are created today, for testing. We can change this later if needed
         Date dateReported = new Date(); //Default constructor creates date with current date/time
-//        int priority;
-//        while (moreProblems){
-//            System.out.println("Enter problem");
-//            description = sc.nextLine();
-//            System.out.println("Who reported this issue?");
-//            reporter = sc.nextLine();
-//            System.out.println("Enter a priority of 1 to 5 for " + description + ", with 1 as lowest priority and 5 as highest.");
-//            String options = "Enter a priority of 1 to 5 for " + description + ", with 1 as lowest priority and 5 as highest.";
-//            priority = getNumChoice(sc, options, 5);
-            //priority = Integer.parseInt(sc.nextLine());
-            Ticket t = new Ticket(inputDescr, inputPriority, inputReporter, dateReported);
-//            ticketQueue.add(t);
-            addTicketInPriorityOrder(ticketQueue, t);
-            //To test, let's print out all of the currently stored tickets
-            printAllTickets(ticketQueue, false);
-//            System.out.println("More tickets to add? (Y or N)");
-//            String more = getYorN(sc.nextLine());
-//            if (more.equalsIgnoreCase("N")) {
-//                moreProblems = false;
-//            }
-//        }
+        Ticket t = new Ticket(inputDescr, inputPriority, inputReporter, dateReported);
+        addTicketInPriorityOrder(ticketQueue, t);
+        //To test, let's print out all of the currently stored tickets
+        printAllTickets(ticketQueue, false);
     }
 
     // METHOD PRINT ALL TICKETS__________________________________________________________
