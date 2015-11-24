@@ -49,22 +49,13 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
-      <component id="caf00" class="javax.swing.JTextField" binding="canDeleteTextField">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
-      </component>
       <component id="5f52c" class="javax.swing.JLabel" binding="deleteOptionsLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Here is a list of Incident you may delete:"/>
+          <text value="Here is a list of Incidents you may delete:"/>
         </properties>
       </component>
       <vspacer id="e5908">
@@ -121,6 +112,15 @@
         <properties>
           <text value="Enter Incident Resolution:"/>
         </properties>
+      </component>
+      <component id="9f867" class="javax.swing.JTextArea" binding="deleteOptionsTextArea">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
       </component>
     </children>
   </grid>

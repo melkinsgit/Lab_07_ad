@@ -55,7 +55,7 @@ public class TicketGUI extends JFrame {
                     ticketMethods.searchByName();
                 }
                 if (menuOptions.getSelectedItem().equals(displayAll)) {
-
+                    DisplayAll displayAll = new DisplayAll(ticketMethods);
                 }
                 if (menuOptions.getSelectedItem().equals(quit)){
                     ticketMethods.outputToFile("Resolved");
