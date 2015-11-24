@@ -18,6 +18,7 @@ public class TicketMethods {
     protected String inputDescr;
     protected String inputReporter;
     protected int deleteID;
+    protected String deleteIssue;
 
     public TicketMethods() {
         TicketGUI ticketGUI = new TicketGUI(this);
@@ -246,46 +247,39 @@ public class TicketMethods {
 
     // METHOD RESOLVE TICKET_______________________________________________________________________
     protected void resolveTicket(Ticket ticket) {
-
         ticket.setDateResolved(new Date());
-//        Scanner s = new Scanner(System.in);
-//        System.out.println("Enter description of resolution.");
-//        String resString = s.nextLine();
-//        ticket.setResolution(resString);
         ticket.setStatus("closed");
         resolvedTickets.add(ticket);
-//        printAllTickets(resolvedTickets, true);
-//        s.close();
     } // end resolveTicket fn
 
     // METHOD DELETE BY ISSUE______________________________________________________________________
-    protected void deleteByIssue() {
-
-        if (ticketQueue.size() == 0) { //no tickets!
-            System.out.println("No tickets to delete!\n");
-            return;
-        }
-        boolean found = false;
-
-        while (!found) {
-
-            try {
-                Scanner deleteScanner = new Scanner(System.in);
-                System.out.println("Enter an issue");
-                String deleteIssue = deleteScanner.nextLine();
-
-//Call method to create a Linked List of matching Tickets
-
-                LinkedList<Ticket> matching = listOfMatches(ticketQueue, deleteIssue);
-                deleteByID(matching);
-                found = true;
-            } // end try
-
-            catch (Exception exc){
-                System.out.println("Sorry, that's not a valid. Please enter a phrase or string of letters.");
-            }
-        }   // end while loop
-    } // end deleteTicket fn
+//    protected void deleteByIssue() {
+//
+//        if (ticketQueue.size() == 0) { //no tickets!
+//            System.out.println("No tickets to delete!\n");
+//            return;
+//        }
+//        boolean found = false;
+//
+//        while (!found) {
+//
+//            try {
+//                Scanner deleteScanner = new Scanner(System.in);
+//                System.out.println("Enter an issue");
+//                String deleteIssue = deleteScanner.nextLine();
+//
+////Call method to create a Linked List of matching Tickets
+//
+//                LinkedList<Ticket> matching = listOfMatches(ticketQueue, deleteIssue);
+//                deleteByID(matching);
+//                found = true;
+//            } // end try
+//
+//            catch (Exception exc){
+//                System.out.println("Sorry, that's not a valid. Please enter a phrase or string of letters.");
+//            }
+//        }   // end while loop
+//    } // end deleteTicket fn
 
     // METHOD LIST OF MATCHES_________________________________________________________________
     protected LinkedList<Ticket> listOfMatches(LinkedList<Ticket> ticketQueue, String deleteIssue) {

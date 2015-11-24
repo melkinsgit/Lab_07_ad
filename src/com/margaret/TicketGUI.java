@@ -48,12 +48,16 @@ public class TicketGUI extends JFrame {
 //                    ticketMethods.deleteByID(ticketMethods.ticketQueue);
                 }
                 if (menuOptions.getSelectedItem().equals(deleteByIss)) {
-                    ticketMethods.deleteByIssue();                    ;
+                    DeleteByIssue deleteByIssue = new DeleteByIssue(ticketMethods);
+//                    ticketMethods.deleteByIssue();
                 }
                 if (menuOptions.getSelectedItem().equals(searchByName)) {
                     ticketMethods.searchByName();
                 }
                 if (menuOptions.getSelectedItem().equals(displayAll)) {
+
+                }
+                if (menuOptions.getSelectedItem().equals(quit)){
                     ticketMethods.outputToFile("Resolved");
                     ticketMethods.outputToFile("Open");
                     System.out.println("Quitting program.");
