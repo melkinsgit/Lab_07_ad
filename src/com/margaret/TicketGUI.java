@@ -25,7 +25,7 @@ public class TicketGUI extends JFrame {
         final String enterTkt = "Enter Ticket";
         final String deleteByID = "Delete By ID";
         final String deleteByIss = "Delete By Issue";
-        final String searchByName = "Search By Name";
+        final String searchByName = "Search By Issue";
         final String displayAll = "Display All Tickets";
         final String quit = "Quit";
         menuOptions.addItem(startStr);
@@ -52,7 +52,8 @@ public class TicketGUI extends JFrame {
 //                    ticketMethods.deleteByIssue();
                 }
                 if (menuOptions.getSelectedItem().equals(searchByName)) {
-                    ticketMethods.searchByName();
+//                    ticketMethods.searchByName();
+                    SearchByName searchByName = new SearchByName(ticketMethods);
                 }
                 if (menuOptions.getSelectedItem().equals(displayAll)) {
                     DisplayAll displayAll = new DisplayAll(ticketMethods);

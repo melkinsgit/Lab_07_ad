@@ -27,7 +27,7 @@ public class DeleteByIssue extends JFrame {
     private String issueText;
     private LinkedList<Ticket> matching;
     private int canBeDeleted;
-    private String canBeDeletedStr;
+    private String canBeDeletedStr = "";
     private Ticket ticketToDelete;
 
     public DeleteByIssue (TicketMethods tm){

@@ -15,7 +15,7 @@ public class DisplayAll extends JFrame {
     private JTextArea displayTextArea;
 
     TicketMethods ticketMethods;
-    String toDisplay;
+    String toDisplay = "";
 
     public DisplayAll(TicketMethods tm){
         super("Display All Tickets Option");

@@ -22,6 +22,7 @@ public class TicketMethods {
 
     public TicketMethods() {
         TicketGUI ticketGUI = new TicketGUI(this);
+        this.fileIO();
     }
 
     // previsously all METHODS were static as part of main; no longer now as part of TicketMethods class
@@ -131,38 +132,38 @@ public class TicketMethods {
     protected void searchByName() {
 
         if (ticketQueue.size() == 0) { //no tickets!
-            System.out.println("No tickets to search!\n");
-            return;
-        }
-        boolean found = false;
+        System.out.println("No tickets to search!\n");
+        return;
+    }
+    boolean found = false;
 
-        while (!found) {
+    while (!found) {
 
-            try {
-                Scanner deleteScanner = new Scanner(System.in);
-                System.out.println("Enter an issue");
-                String deleteIssue = deleteScanner.nextLine();
+        try {
+            Scanner deleteScanner = new Scanner(System.in);
+            System.out.println("Enter an issue");
+            String deleteIssue = deleteScanner.nextLine();
 
 //Call method to create a Linked List of matching Tickets
-                LinkedList<Ticket> matching = listOfMatches (ticketQueue, deleteIssue);
-                if (matching.size() > 0) {
+            LinkedList<Ticket> matching = listOfMatches (ticketQueue, deleteIssue);
+            if (matching.size() > 0) {
+                found = true;
+                deleteByID(matching);
+            }
+            else {
+                System.out.println("Ticket Issue not found. Would you like to try again? (Y or N)");
+                String resp = getYorN(deleteScanner.nextLine());
+                if (resp.equalsIgnoreCase("N")) {
                     found = true;
-                    deleteByID(matching);
                 }
-                else {
-                    System.out.println("Ticket Issue not found. Would you like to try again? (Y or N)");
-                    String resp = getYorN(deleteScanner.nextLine());
-                    if (resp.equalsIgnoreCase("N")) {
-                        found = true;
-                    }
-                }
-            } // end try
+            }
+        } // end try
 
-            catch (Exception exc){
-                System.out.println("Please enter a response in words.");
-                System.out.println(exc);
-            } // end catch
-        } // end while loop
+        catch (Exception exc){
+            System.out.println("Please enter a response in words.");
+            System.out.println(exc);
+        } // end catch
+    } // end while loop
     } // end deleteTicket fn
 
     // METHOD DELETE BY ID__________________________________________________________________________
