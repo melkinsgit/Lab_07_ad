@@ -18,7 +18,7 @@ public class DisplayAll extends JFrame {
     String toDisplay = "";
 
     public DisplayAll(TicketMethods tm){
-        super("Display All Tickets Option");
+        super("Display All Tickets");
         setPreferredSize(new Dimension(400, 300));
         setContentPane(rootPanel);
         pack();
@@ -34,7 +34,6 @@ public class DisplayAll extends JFrame {
         for (Ticket ticket : ticketMethods.ticketQueue){
             toDisplay += ("Ticket ID: " + ticket.getTicketID() + " Issue: " + ticket.getDescription() + " Priority: " + ticket.getPriority() + " Reported by: " + ticket.getReporter() + " Reported on: " + ticket.getDateReported() + " Status: " + ticket.getStatus() + "\n");
         }
-        System.out.println("all tickets are: " + toDisplay);
         displayTextArea.setText(toDisplay);
 
         doneButton.addActionListener(new ActionListener() {

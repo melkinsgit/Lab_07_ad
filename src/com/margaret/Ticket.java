@@ -31,7 +31,7 @@ public class Ticket {
     }
 
     public void setStaticCounter (int num){
-        this.staticTicketIDCounter = num;
+        staticTicketIDCounter = num;
     }
 
     // constructor

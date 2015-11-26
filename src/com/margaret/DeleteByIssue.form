@@ -110,7 +110,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Enter Incident Resolution:"/>
+          <text value="After choosing Incident enter Reloution. Hit enter to complete:"/>
         </properties>
       </component>
       <component id="9f867" class="javax.swing.JTextArea" binding="deleteOptionsTextArea">

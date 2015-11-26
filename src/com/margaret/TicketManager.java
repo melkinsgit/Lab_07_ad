@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class TicketManager {
 
     public static void main(String[] args) {
-
         TicketMethods ticketMethods = new TicketMethods();
     }
 }

@@ -33,9 +33,7 @@ public class TicketMethods {
             FileReader fRead = new FileReader("OpenTkts.txt");
             BufferedReader bRead = new BufferedReader(fRead);
             String ticketLine = bRead.readLine();
-//            System.out.println(ticketLine);
             lastCounter = Integer.parseInt(ticketLine);
-//            System.out.println(lastCounter);
             Ticket.staticTicketIDCounter = lastCounter;
             ticketLine = bRead.readLine();
             int ticketID;
@@ -103,149 +101,6 @@ public class TicketMethods {
         }
     }
 
-    // METHOD GET NUM CHOICE______________________________________________________________________
-    protected int getNumChoice(Scanner scan, String menu, int i) {
-        int choice = 0;
-        boolean valid = false;
-        String s = scan.nextLine();
-        while (!valid){
-            try {
-                choice = Integer.parseInt(s);
-                if (choice >= 1 && choice <= i) {
-                    valid = true;
-                }
-                else{
-                    System.out.println("Sorry, that's answer won't work. Please enter a number between 1 and " + i + ".");
-                    System.out.println(menu);
-                    s = scan.nextLine();
-                }
-            } catch (Exception ex) {
-                System.out.println("Sorry, that's answer won't work. Please enter a number between 1 and " + i + ".");
-                System.out.println(menu);
-                s = scan.nextLine();
-            }
-        }
-        return choice;
-    }
-
-    // METHOD SEARCH BY NAME______________________________________________________________________
-    protected void searchByName() {
-
-        if (ticketQueue.size() == 0) { //no tickets!
-        System.out.println("No tickets to search!\n");
-        return;
-    }
-    boolean found = false;
-
-    while (!found) {
-
-        try {
-            Scanner deleteScanner = new Scanner(System.in);
-            System.out.println("Enter an issue");
-            String deleteIssue = deleteScanner.nextLine();
-
-//Call method to create a Linked List of matching Tickets
-            LinkedList<Ticket> matching = listOfMatches (ticketQueue, deleteIssue);
-            if (matching.size() > 0) {
-                found = true;
-                deleteByID(matching);
-            }
-            else {
-                System.out.println("Ticket Issue not found. Would you like to try again? (Y or N)");
-                String resp = getYorN(deleteScanner.nextLine());
-                if (resp.equalsIgnoreCase("N")) {
-                    found = true;
-                }
-            }
-        } // end try
-
-        catch (Exception exc){
-            System.out.println("Please enter a response in words.");
-            System.out.println(exc);
-        } // end catch
-    } // end while loop
-    } // end deleteTicket fn
-
-    // METHOD DELETE BY ID__________________________________________________________________________
-    protected void deleteByID(LinkedList<Ticket> ticketQueue) {
-
-        if (ticketQueue.size() == 0) { //no tickets!
-            System.out.println("No tickets to delete!\n");
-            return;
-        }
-        boolean found = false;
-
-        while (!found) {
-
-            try {
-                printAllTickets(ticketQueue, false); //display list for user
-                Scanner deleteScanner = new Scanner(System.in);
-                System.out.println("Enter ID of ticket to delete");
-                int deleteID = getTktNum(deleteScanner, deleteScanner.nextLine());
-
-//Loop over all tickets. Delete the one with this ticket ID
-
-                for (Ticket ticket : ticketQueue) {
-                    if (ticket.getTicketID() == deleteID) {
-                        found = true;
-                        resolveTicket(ticket);
-                        ticketQueue.remove(ticket);
-                        System.out.println(String.format("Ticket %d deleted", deleteID));
-                        break; //don't need loop any more.
-                    }
-                }
-                if (found == false) {
-                    System.out.println("Ticket ID not found, no ticket deleted. Would you like to try again? (Y or N)");
-                    String resp = getYorN(deleteScanner.nextLine());
-                    if (resp.equalsIgnoreCase("N")) {
-                        found = true;
-                    }
-                }
-            } // end try
-            catch (Exception exc){
-                System.out.println("Please enter a whole number without decimals.");
-            } // end catch
-        } // end while loop
-    } // end deleteTicket fn
-
-    // METHOD GET Y OR N______________________________________________________________________
-    protected String getYorN(String s) {
-        Scanner scan = new Scanner(System.in);
-        String choice = "";
-        boolean valid = false;
-        while (!valid){
-            if (s.equals("n") || s.equals("N") || s.equals("y") || s.equals("Y")) {
-                choice = s;
-                valid = true;
-            }
-            else{
-                System.out.println("Sorry, that's not a valid response. Please enter Y or N.");
-                s = scan.nextLine();
-            }
-        }
-        return choice;
-    }
-
-    // METHOD GET TKT NUM______________________________________________________________________
-    protected int getTktNum(Scanner numScan, String s) {
-        boolean valid = false;
-        int sNum = 0;
-        while (!valid) {
-            try {
-                sNum = Integer.parseInt(s);
-                if (sNum < 0){
-                    System.out.println("Sorry, your number entry has to be greater than 0.");
-                    s = numScan.nextLine();
-                }
-                else {valid = true;}
-            } catch (Exception ex) {
-                System.out.println("Sorry, that entry isn't valid. Please enter a whole number greater than 0.");
-                s = numScan.nextLine();
-            }
-        }
-        return sNum;
-    }
-
     // METHOD RESOLVE TICKET_______________________________________________________________________
     protected void resolveTicket(Ticket ticket) {
         ticket.setDateResolved(new Date());
@@ -253,34 +108,6 @@ public class TicketMethods {
         resolvedTickets.add(ticket);
     } // end resolveTicket fn
 
-    // METHOD DELETE BY ISSUE______________________________________________________________________
-//    protected void deleteByIssue() {
-//
-//        if (ticketQueue.size() == 0) { //no tickets!
-//            System.out.println("No tickets to delete!\n");
-//            return;
-//        }
-//        boolean found = false;
-//
-//        while (!found) {
-//
-//            try {
-//                Scanner deleteScanner = new Scanner(System.in);
-//                System.out.println("Enter an issue");
-//                String deleteIssue = deleteScanner.nextLine();
-//
-////Call method to create a Linked List of matching Tickets
-//
-//                LinkedList<Ticket> matching = listOfMatches(ticketQueue, deleteIssue);
-//                deleteByID(matching);
-//                found = true;
-//            } // end try
-//
-//            catch (Exception exc){
-//                System.out.println("Sorry, that's not a valid. Please enter a phrase or string of letters.");
-//            }
-//        }   // end while loop
-//    } // end deleteTicket fn
 
     // METHOD LIST OF MATCHES_________________________________________________________________
     protected LinkedList<Ticket> listOfMatches(LinkedList<Ticket> ticketQueue, String deleteIssue) {
@@ -302,28 +129,8 @@ public class TicketMethods {
         Ticket t = new Ticket(inputDescr, inputPriority, inputReporter, dateReported);
         addTicketInPriorityOrder(ticketQueue, t);
         //To test, let's print out all of the currently stored tickets
-        printAllTickets(ticketQueue, false);
+//        printAllTickets(ticketQueue, false);
     }
-
-    // METHOD PRINT ALL TICKETS__________________________________________________________
-    protected void printAllTickets(LinkedList<Ticket> tickets, Boolean resolved) {
-        if (resolved){
-            System.out.println(" ------- Resolved tickets ----------");
-            for (Ticket t : tickets ) {
-                System.out.println(t); //Write a toString method in Ticket class
-//println will try to call toString on its argument
-            }
-        }
-        else {
-            System.out.println(" ------- All open tickets ----------");
-            for (Ticket t : tickets) {
-                System.out.println(t); //Write a toString method in Ticket class
-//println will try to call toString on its argument
-            }
-        }
-        System.out.println(" ------- End of ticket list --------");
-    }
-
 
     // METHOD ADD TICKET IN PRIORITY ORDER___________________________________________________
     protected void addTicketInPriorityOrder(LinkedList<Ticket> tickets, Ticket newTicket){

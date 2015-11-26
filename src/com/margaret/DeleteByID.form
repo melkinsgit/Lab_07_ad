@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.margaret.DeleteByID">
   <grid id="27dc6" binding="rootPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="506" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -74,7 +74,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Please enter a Resolution after choosing an Incident to Delete:"/>
+          <text value="After choosing Incident enter Resolution here. Hit enter to complete:"/>
         </properties>
       </component>
       <component id="3f381" class="javax.swing.JTextField" binding="resolutionTextField">

@@ -31,7 +31,7 @@ public class DeleteByIssue extends JFrame {
     private Ticket ticketToDelete;
 
     public DeleteByIssue (TicketMethods tm){
-        super("Delete By Issue Option");
+        super("Delete By Issue");
         setPreferredSize(new Dimension(400, 300));
         setContentPane(rootPanel);
         pack();
@@ -54,12 +54,11 @@ public class DeleteByIssue extends JFrame {
                     try {
                         //Call method to create a Linked List of matching Tickets
                         matching = ticketMethods.listOfMatches(ticketMethods.ticketQueue, ticketMethods.deleteIssue);
-                        System.out.println("The list of matching tickets is " + matching);
                         found = true;
                     } // end try
 
                     catch (Exception exc) {
-                        System.out.println("Sorry, that's not a valid. Please enter a phrase or string of letters.");
+                        errorTextArea.setText("Sorry, that's not a valid. Please enter a phrase or string of letters.");
                     }
                 }   // end while loop
 

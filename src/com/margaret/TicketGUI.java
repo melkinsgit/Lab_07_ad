@@ -40,19 +40,15 @@ public class TicketGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (menuOptions.getSelectedItem().equals(enterTkt)) {
-//                    ticketMethods.addTickets();
                      AddTicket addTicket = new AddTicket(ticketMethods);
                 }
                 if (menuOptions.getSelectedItem().equals(deleteByID)) {
                     DeleteByID deleteByID = new DeleteByID(ticketMethods);
-//                    ticketMethods.deleteByID(ticketMethods.ticketQueue);
                 }
                 if (menuOptions.getSelectedItem().equals(deleteByIss)) {
                     DeleteByIssue deleteByIssue = new DeleteByIssue(ticketMethods);
-//                    ticketMethods.deleteByIssue();
                 }
                 if (menuOptions.getSelectedItem().equals(searchByName)) {
-//                    ticketMethods.searchByName();
                     SearchByName searchByName = new SearchByName(ticketMethods);
                 }
                 if (menuOptions.getSelectedItem().equals(displayAll)) {
@@ -61,7 +57,6 @@ public class TicketGUI extends JFrame {
                 if (menuOptions.getSelectedItem().equals(quit)){
                     ticketMethods.outputToFile("Resolved");
                     ticketMethods.outputToFile("Open");
-                    System.out.println("Quitting program.");
                     System.exit(0);
                 }
                 menuOptions.setSelectedIndex(0);

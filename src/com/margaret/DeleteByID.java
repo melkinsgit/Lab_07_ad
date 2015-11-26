@@ -24,7 +24,7 @@ public class DeleteByID extends JFrame {
     private Ticket ticketToDelete;
 
     public DeleteByID (TicketMethods tm) {
-        super("Delete By ID Option");
+        super("Delete By ID");
         setPreferredSize(new Dimension(400, 300));
         setContentPane(rootPanel);
         pack();
@@ -38,7 +38,7 @@ public class DeleteByID extends JFrame {
         }
 
         try {
-            ticketMethods.printAllTickets(ticketMethods.ticketQueue, false); //display list for user
+//            ticketMethods.printAllTickets(ticketMethods.ticketQueue, false); //display list for user
             for (Ticket ticket : ticketMethods.ticketQueue) {
                 canBeDeletedStr += ("Ticket ID: " + ticket.getTicketID() + " Issue: " + ticket.getDescription() + " Priority: " + ticket.getPriority() + " Reported by: " + ticket.getReporter() + " Reported on: " + ticket.getDateReported() + " Status: " + ticket.getStatus() + "\n");
                 canBeDeleted = ticket.getTicketID();
@@ -47,7 +47,7 @@ public class DeleteByID extends JFrame {
             deleteTextArea.setText(canBeDeletedStr);
             } // end try
             catch (Exception exc) {
-                System.out.println("There are no tickets to delete.");
+                errorTextArea.setText("There are no tickets to delete.");
             } // end catch
 
         deleteIDComboBox.addActionListener(new ActionListener() {
